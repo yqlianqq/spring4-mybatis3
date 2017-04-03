@@ -1,0 +1,5 @@
+me\gacl\domain\User.class
+me\gacl\dao\UserMapper.class
+me\gacl\service\impl\UserServiceImpl.class
+me\gacl\service\UserServiceI.class
+me\gacl\web\controller\UserServlet.class
