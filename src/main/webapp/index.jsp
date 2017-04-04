@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>显示用户信息</title>
+        <title>显示员工信息</title>
         <style type="text/css">
             table,td{
                 border: 1px solid;
@@ -15,18 +15,18 @@
     <body>
         <table>
             <tr>
-                <td>用户ID</td>
-                <td>用户名</td>
-                <td>用户生日</td>
-                <td>工资</td>
+                <td>员工工号</td>
+                <td>用户密码</td>
+                <td>用户名称</td>
+                <td>科室编号</td>
             </tr>
             <%--遍历lstUsers集合中的User对象 --%>
-            <c:forEach var="user" items="${lstUsers}">
+            <c:forEach var="employee" items="${lstEmployees}">
                 <tr>
-                    <td>${user.userId}</td>
-                    <td>${user.userName}</td>
-                    <td>${user.userBirthday}</td>
-                    <td>${user.userSalary}</td>
+                    <td>${employee.empId}</td>
+                    <td>${employee.empPwd}</td>
+                    <td>${employee.empName}</td>
+                    <td>${employee.empOffid}</td>
                 </tr>
             </c:forEach>
         </table>

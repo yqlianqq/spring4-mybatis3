@@ -1,0 +1,644 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me.gacl.dao.RecordMapper">
+  <resultMap id="BaseResultMap" type="me.gacl.domain.Record">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="recd_id" jdbcType="INTEGER" property="recdId" />
+    <result column="emp_id" jdbcType="INTEGER" property="empId" />
+    <result column="date" jdbcType="DATE" property="date" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="real_time" jdbcType="TIMESTAMP" property="realTime" />
+    <result column="recd_type" jdbcType="INTEGER" property="recdType" />
+    <result column="mor_noon" jdbcType="TINYINT" property="morNoon" />
+    <result column="work_state" jdbcType="TINYINT" property="workState" />
+    <result column="from" jdbcType="TINYINT" property="from" />
+    <result column="memo" jdbcType="VARCHAR" property="memo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, recd_id, emp_id, date, time, real_time, recd_type, mor_noon, work_state, from, 
+    memo
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="me.gacl.domain.Record">
+    insert into record (id, recd_id, emp_id, 
+      date, time, real_time, 
+      recd_type, mor_noon, work_state, 
+      from, memo)
+    values (#{id,jdbcType=INTEGER}, #{recdId,jdbcType=INTEGER}, #{empId,jdbcType=INTEGER}, 
+      #{date,jdbcType=DATE}, #{time,jdbcType=TIMESTAMP}, #{realTime,jdbcType=TIMESTAMP}, 
+      #{recdType,jdbcType=INTEGER}, #{morNoon,jdbcType=TINYINT}, #{workState,jdbcType=TINYINT}, 
+      #{from,jdbcType=TINYINT}, #{memo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="me.gacl.domain.Record">
+    insert into record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="recdId != null">
+        recd_id,
+      </if>
+      <if test="empId != null">
+        emp_id,
+      </if>
+      <if test="date != null">
+        date,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+      <if test="realTime != null">
+        real_time,
+      </if>
+      <if test="recdType != null">
+        recd_type,
+      </if>
+      <if test="morNoon != null">
+        mor_noon,
+      </if>
+      <if test="workState != null">
+        work_state,
+      </if>
+      <if test="from != null">
+        from,
+      </if>
+      <if test="memo != null">
+        memo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="recdId != null">
+        #{recdId,jdbcType=INTEGER},
+      </if>
+      <if test="empId != null">
+        #{empId,jdbcType=INTEGER},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=DATE},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="realTime != null">
+        #{realTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recdType != null">
+        #{recdType,jdbcType=INTEGER},
+      </if>
+      <if test="morNoon != null">
+        #{morNoon,jdbcType=TINYINT},
+      </if>
+      <if test="workState != null">
+        #{workState,jdbcType=TINYINT},
+      </if>
+      <if test="from != null">
+        #{from,jdbcType=TINYINT},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="me.gacl.domain.Record">
+    update record
+    <set>
+      <if test="recdId != null">
+        recd_id = #{recdId,jdbcType=INTEGER},
+      </if>
+      <if test="empId != null">
+        emp_id = #{empId,jdbcType=INTEGER},
+      </if>
+      <if test="date != null">
+        date = #{date,jdbcType=DATE},
+      </if>
+      <if test="time != null">
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="realTime != null">
+        real_time = #{realTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recdType != null">
+        recd_type = #{recdType,jdbcType=INTEGER},
+      </if>
+      <if test="morNoon != null">
+        mor_noon = #{morNoon,jdbcType=TINYINT},
+      </if>
+      <if test="workState != null">
+        work_state = #{workState,jdbcType=TINYINT},
+      </if>
+      <if test="from != null">
+        from = #{from,jdbcType=TINYINT},
+      </if>
+      <if test="memo != null">
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="me.gacl.domain.Record">
+    update record
+    set recd_id = #{recdId,jdbcType=INTEGER},
+      emp_id = #{empId,jdbcType=INTEGER},
+      date = #{date,jdbcType=DATE},
+      time = #{time,jdbcType=TIMESTAMP},
+      real_time = #{realTime,jdbcType=TIMESTAMP},
+      recd_type = #{recdType,jdbcType=INTEGER},
+      mor_noon = #{morNoon,jdbcType=TINYINT},
+      work_state = #{workState,jdbcType=TINYINT},
+      from = #{from,jdbcType=TINYINT},
+      memo = #{memo,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="me.gacl.domain.Record">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="recd_id" jdbcType="INTEGER" property="recdId" />
+    <result column="emp_id" jdbcType="INTEGER" property="empId" />
+    <result column="date" jdbcType="DATE" property="date" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="real_time" jdbcType="TIMESTAMP" property="realTime" />
+    <result column="recd_type" jdbcType="INTEGER" property="recdType" />
+    <result column="mor_noon" jdbcType="TINYINT" property="morNoon" />
+    <result column="work_state" jdbcType="TINYINT" property="workState" />
+    <result column="from" jdbcType="TINYINT" property="from" />
+    <result column="memo" jdbcType="VARCHAR" property="memo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, recd_id, emp_id, date, time, real_time, recd_type, mor_noon, work_state, from, 
+    memo
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="me.gacl.domain.Record">
+    insert into record (id, recd_id, emp_id, 
+      date, time, real_time, 
+      recd_type, mor_noon, work_state, 
+      from, memo)
+    values (#{id,jdbcType=INTEGER}, #{recdId,jdbcType=INTEGER}, #{empId,jdbcType=INTEGER}, 
+      #{date,jdbcType=DATE}, #{time,jdbcType=TIMESTAMP}, #{realTime,jdbcType=TIMESTAMP}, 
+      #{recdType,jdbcType=INTEGER}, #{morNoon,jdbcType=TINYINT}, #{workState,jdbcType=TINYINT}, 
+      #{from,jdbcType=TINYINT}, #{memo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="me.gacl.domain.Record">
+    insert into record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="recdId != null">
+        recd_id,
+      </if>
+      <if test="empId != null">
+        emp_id,
+      </if>
+      <if test="date != null">
+        date,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+      <if test="realTime != null">
+        real_time,
+      </if>
+      <if test="recdType != null">
+        recd_type,
+      </if>
+      <if test="morNoon != null">
+        mor_noon,
+      </if>
+      <if test="workState != null">
+        work_state,
+      </if>
+      <if test="from != null">
+        from,
+      </if>
+      <if test="memo != null">
+        memo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="recdId != null">
+        #{recdId,jdbcType=INTEGER},
+      </if>
+      <if test="empId != null">
+        #{empId,jdbcType=INTEGER},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=DATE},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="realTime != null">
+        #{realTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recdType != null">
+        #{recdType,jdbcType=INTEGER},
+      </if>
+      <if test="morNoon != null">
+        #{morNoon,jdbcType=TINYINT},
+      </if>
+      <if test="workState != null">
+        #{workState,jdbcType=TINYINT},
+      </if>
+      <if test="from != null">
+        #{from,jdbcType=TINYINT},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="me.gacl.domain.Record">
+    update record
+    <set>
+      <if test="recdId != null">
+        recd_id = #{recdId,jdbcType=INTEGER},
+      </if>
+      <if test="empId != null">
+        emp_id = #{empId,jdbcType=INTEGER},
+      </if>
+      <if test="date != null">
+        date = #{date,jdbcType=DATE},
+      </if>
+      <if test="time != null">
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="realTime != null">
+        real_time = #{realTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recdType != null">
+        recd_type = #{recdType,jdbcType=INTEGER},
+      </if>
+      <if test="morNoon != null">
+        mor_noon = #{morNoon,jdbcType=TINYINT},
+      </if>
+      <if test="workState != null">
+        work_state = #{workState,jdbcType=TINYINT},
+      </if>
+      <if test="from != null">
+        from = #{from,jdbcType=TINYINT},
+      </if>
+      <if test="memo != null">
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="me.gacl.domain.Record">
+    update record
+    set recd_id = #{recdId,jdbcType=INTEGER},
+      emp_id = #{empId,jdbcType=INTEGER},
+      date = #{date,jdbcType=DATE},
+      time = #{time,jdbcType=TIMESTAMP},
+      real_time = #{realTime,jdbcType=TIMESTAMP},
+      recd_type = #{recdType,jdbcType=INTEGER},
+      mor_noon = #{morNoon,jdbcType=TINYINT},
+      work_state = #{workState,jdbcType=TINYINT},
+      from = #{from,jdbcType=TINYINT},
+      memo = #{memo,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="me.gacl.domain.Record">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="recd_id" jdbcType="INTEGER" property="recdId" />
+    <result column="emp_id" jdbcType="INTEGER" property="empId" />
+    <result column="date" jdbcType="DATE" property="date" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="real_time" jdbcType="TIMESTAMP" property="realTime" />
+    <result column="recd_type" jdbcType="INTEGER" property="recdType" />
+    <result column="mor_noon" jdbcType="TINYINT" property="morNoon" />
+    <result column="work_state" jdbcType="TINYINT" property="workState" />
+    <result column="from" jdbcType="TINYINT" property="from" />
+    <result column="memo" jdbcType="VARCHAR" property="memo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, recd_id, emp_id, date, time, real_time, recd_type, mor_noon, work_state, from, 
+    memo
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="me.gacl.domain.Record">
+    insert into record (id, recd_id, emp_id, 
+      date, time, real_time, 
+      recd_type, mor_noon, work_state, 
+      from, memo)
+    values (#{id,jdbcType=INTEGER}, #{recdId,jdbcType=INTEGER}, #{empId,jdbcType=INTEGER}, 
+      #{date,jdbcType=DATE}, #{time,jdbcType=TIMESTAMP}, #{realTime,jdbcType=TIMESTAMP}, 
+      #{recdType,jdbcType=INTEGER}, #{morNoon,jdbcType=TINYINT}, #{workState,jdbcType=TINYINT}, 
+      #{from,jdbcType=TINYINT}, #{memo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="me.gacl.domain.Record">
+    insert into record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="recdId != null">
+        recd_id,
+      </if>
+      <if test="empId != null">
+        emp_id,
+      </if>
+      <if test="date != null">
+        date,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+      <if test="realTime != null">
+        real_time,
+      </if>
+      <if test="recdType != null">
+        recd_type,
+      </if>
+      <if test="morNoon != null">
+        mor_noon,
+      </if>
+      <if test="workState != null">
+        work_state,
+      </if>
+      <if test="from != null">
+        from,
+      </if>
+      <if test="memo != null">
+        memo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="recdId != null">
+        #{recdId,jdbcType=INTEGER},
+      </if>
+      <if test="empId != null">
+        #{empId,jdbcType=INTEGER},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=DATE},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="realTime != null">
+        #{realTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recdType != null">
+        #{recdType,jdbcType=INTEGER},
+      </if>
+      <if test="morNoon != null">
+        #{morNoon,jdbcType=TINYINT},
+      </if>
+      <if test="workState != null">
+        #{workState,jdbcType=TINYINT},
+      </if>
+      <if test="from != null">
+        #{from,jdbcType=TINYINT},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="me.gacl.domain.Record">
+    update record
+    <set>
+      <if test="recdId != null">
+        recd_id = #{recdId,jdbcType=INTEGER},
+      </if>
+      <if test="empId != null">
+        emp_id = #{empId,jdbcType=INTEGER},
+      </if>
+      <if test="date != null">
+        date = #{date,jdbcType=DATE},
+      </if>
+      <if test="time != null">
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="realTime != null">
+        real_time = #{realTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recdType != null">
+        recd_type = #{recdType,jdbcType=INTEGER},
+      </if>
+      <if test="morNoon != null">
+        mor_noon = #{morNoon,jdbcType=TINYINT},
+      </if>
+      <if test="workState != null">
+        work_state = #{workState,jdbcType=TINYINT},
+      </if>
+      <if test="from != null">
+        from = #{from,jdbcType=TINYINT},
+      </if>
+      <if test="memo != null">
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="me.gacl.domain.Record">
+    update record
+    set recd_id = #{recdId,jdbcType=INTEGER},
+      emp_id = #{empId,jdbcType=INTEGER},
+      date = #{date,jdbcType=DATE},
+      time = #{time,jdbcType=TIMESTAMP},
+      real_time = #{realTime,jdbcType=TIMESTAMP},
+      recd_type = #{recdType,jdbcType=INTEGER},
+      mor_noon = #{morNoon,jdbcType=TINYINT},
+      work_state = #{workState,jdbcType=TINYINT},
+      from = #{from,jdbcType=TINYINT},
+      memo = #{memo,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="me.gacl.domain.Record">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="recd_id" jdbcType="INTEGER" property="recdId" />
+    <result column="emp_id" jdbcType="INTEGER" property="empId" />
+    <result column="date" jdbcType="DATE" property="date" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="real_time" jdbcType="TIMESTAMP" property="realTime" />
+    <result column="recd_type" jdbcType="INTEGER" property="recdType" />
+    <result column="mor_noon" jdbcType="TINYINT" property="morNoon" />
+    <result column="work_state" jdbcType="TINYINT" property="workState" />
+    <result column="from" jdbcType="TINYINT" property="from" />
+    <result column="memo" jdbcType="VARCHAR" property="memo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, recd_id, emp_id, date, time, real_time, recd_type, mor_noon, work_state, from, 
+    memo
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="me.gacl.domain.Record">
+    insert into record (id, recd_id, emp_id, 
+      date, time, real_time, 
+      recd_type, mor_noon, work_state, 
+      from, memo)
+    values (#{id,jdbcType=INTEGER}, #{recdId,jdbcType=INTEGER}, #{empId,jdbcType=INTEGER}, 
+      #{date,jdbcType=DATE}, #{time,jdbcType=TIMESTAMP}, #{realTime,jdbcType=TIMESTAMP}, 
+      #{recdType,jdbcType=INTEGER}, #{morNoon,jdbcType=TINYINT}, #{workState,jdbcType=TINYINT}, 
+      #{from,jdbcType=TINYINT}, #{memo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="me.gacl.domain.Record">
+    insert into record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="recdId != null">
+        recd_id,
+      </if>
+      <if test="empId != null">
+        emp_id,
+      </if>
+      <if test="date != null">
+        date,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+      <if test="realTime != null">
+        real_time,
+      </if>
+      <if test="recdType != null">
+        recd_type,
+      </if>
+      <if test="morNoon != null">
+        mor_noon,
+      </if>
+      <if test="workState != null">
+        work_state,
+      </if>
+      <if test="from != null">
+        from,
+      </if>
+      <if test="memo != null">
+        memo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="recdId != null">
+        #{recdId,jdbcType=INTEGER},
+      </if>
+      <if test="empId != null">
+        #{empId,jdbcType=INTEGER},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=DATE},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="realTime != null">
+        #{realTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recdType != null">
+        #{recdType,jdbcType=INTEGER},
+      </if>
+      <if test="morNoon != null">
+        #{morNoon,jdbcType=TINYINT},
+      </if>
+      <if test="workState != null">
+        #{workState,jdbcType=TINYINT},
+      </if>
+      <if test="from != null">
+        #{from,jdbcType=TINYINT},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="me.gacl.domain.Record">
+    update record
+    <set>
+      <if test="recdId != null">
+        recd_id = #{recdId,jdbcType=INTEGER},
+      </if>
+      <if test="empId != null">
+        emp_id = #{empId,jdbcType=INTEGER},
+      </if>
+      <if test="date != null">
+        date = #{date,jdbcType=DATE},
+      </if>
+      <if test="time != null">
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="realTime != null">
+        real_time = #{realTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recdType != null">
+        recd_type = #{recdType,jdbcType=INTEGER},
+      </if>
+      <if test="morNoon != null">
+        mor_noon = #{morNoon,jdbcType=TINYINT},
+      </if>
+      <if test="workState != null">
+        work_state = #{workState,jdbcType=TINYINT},
+      </if>
+      <if test="from != null">
+        from = #{from,jdbcType=TINYINT},
+      </if>
+      <if test="memo != null">
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="me.gacl.domain.Record">
+    update record
+    set recd_id = #{recdId,jdbcType=INTEGER},
+      emp_id = #{empId,jdbcType=INTEGER},
+      date = #{date,jdbcType=DATE},
+      time = #{time,jdbcType=TIMESTAMP},
+      real_time = #{realTime,jdbcType=TIMESTAMP},
+      recd_type = #{recdType,jdbcType=INTEGER},
+      mor_noon = #{morNoon,jdbcType=TINYINT},
+      work_state = #{workState,jdbcType=TINYINT},
+      from = #{from,jdbcType=TINYINT},
+      memo = #{memo,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
